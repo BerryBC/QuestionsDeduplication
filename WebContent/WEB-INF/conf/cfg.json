@@ -1,0 +1,8 @@
+{
+	"dbName": "dbTest",
+	"host": 27017,
+	"user": "Berry",
+	"pw": "Berry",
+	"msgcol": "tbTest",
+	"server":"127.0.0.1"
+}
