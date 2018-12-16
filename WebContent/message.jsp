@@ -11,6 +11,8 @@
 		<a href="/">三世书首页</a>
 	</h1>
 	<br />
+	<p>请稍等哟~</p>
+	<br />
 
 	<div id="divCt"></div>
 	<script src="./js/jquery.min.js" type="text/javascript"></script>
