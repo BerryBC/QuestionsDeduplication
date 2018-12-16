@@ -19,12 +19,13 @@
 	<script type="text/javascript">
 		var strGS = "";
 		setInterval(function() {
-
+			var intRand=Math.random();
 			$.ajax({
 				type : "GET",
 				url : "./UploadHandle",
 				data : {
-					r : "baby"
+					r : "baby",
+					g:intRand
 				},
 				dataType : "json",
 				success : function(data) {

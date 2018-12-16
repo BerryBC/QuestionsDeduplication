@@ -50,8 +50,8 @@ public class UploadHandle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//		System.out.println(request.getParameter("name") == (null));
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		// System.out.println(request.getParameter("name") == (null));
 		if (request.getParameter("r") == (null)) {
 			getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
 		} else if (request.getParameter("r").equals("baby")) {
@@ -60,8 +60,8 @@ public class UploadHandle extends HttpServlet {
 				String strBasePath = request.getScheme() + "://" + request.getServerName() + ":"
 						+ request.getServerPort() + request.getContextPath();
 				String strReUpLoad = strBasePath + "/upload.jsp";
-				qdcMain.setStrFB(
-						"<strong>欢迎使用，上传请点击：</strong></br><a href=\"" + strReUpLoad + "\">" + strReUpLoad + "</a><br/>");
+				qdcMain.setStrFB("<strong>欢迎使用，上传请点击：</strong></br><a href=\"" + strReUpLoad + "\">" + strReUpLoad
+						+ "</a><br/>");
 
 			}
 			JSONObject jsonFB = new JSONObject();
@@ -83,30 +83,30 @@ public class UploadHandle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		doGet(request, response);
+		// doGet(request, response);
 		if (intStatus != 0 || intStatus != 2) {
 			String strBasePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath();
 
 			String strReUpLoad = strBasePath + "/upload.jsp";
-//			getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
-//			response.getWriter().flush();
+			// getServletContext().getRequestDispatcher("/message.jsp").forward(request,
+			// response);
+			// response.getWriter().flush();
 			qdcMain.setStrFB("<strong>请稍等</strong></br>");
-			 PrintWriter out = response.getWriter();//通过servlet的doget方法获取response对象，通过getWriter方法获取PrintWriter对象
-	         out.flush();//清空缓存
-	         out.println("<script>");//输出script标签
-	         out.println("window.location.href=\"./message.jsp\" ;");//js语句：输出alert语句
-	         out.println("</script>");//输出script结尾标签
-	         out.flush();
-			
+			PrintWriter out = response.getWriter();// 通过servlet的doget方法获取response对象，通过getWriter方法获取PrintWriter对象
+			out.flush();// 清空缓存
+			out.println("<script>");// 输出script标签
+			out.println("window.location.href=\"./message.jsp\" ;");// js语句：输出alert语句
+			out.println("</script>");// 输出script结尾标签
+			out.flush();
 
 			intStatus = 1;
 			if (!ServletFileUpload.isMultipartContent(request)) {
 				// 如果不是则停止
-//				PrintWriter writer = response.getWriter();
-//				writer.println("Error: 表单必须包含 enctype=multipart/form-data");
-//				writer.flush();
-//				return;
+				// PrintWriter writer = response.getWriter();
+				// writer.println("Error: 表单必须包含 enctype=multipart/form-data");
+				// writer.flush();
+				// return;
 				qdcMain.setStrFB("<strong>错误了！</strong></br>错误信息为:表单必须包含 enctype=multipart/form-data</br>"
 						+ "</br></br><strong>重新上传请点击：</strong></br><a href=\"" + strReUpLoad + "\">" + strReUpLoad
 						+ "</a></br>");
@@ -163,16 +163,18 @@ public class UploadHandle extends HttpServlet {
 							qdcMain.blukInsertCSVToDB("tbTest", filePath);
 							qdcMain.splitWordFMDB("tbTest");
 							qdcMain.writeColToCSV("tbTest", fileHasSWPath);
-//							request.setAttribute("message", "文件上传成功!");
+							// request.setAttribute("message", "文件上传成功!");
 							System.out.println(fileHasSWPath);
-							qdcMain.setStrFB("<strong>成功</strong></br>文件下载地址为：" + strBasePath + "/" + UPLOAD_DIRECTORY
-									+ "/hasDone-" + fileName + "</br></br><strong>继续上传请点击：</strong></br><a href=\""
+							String strFinFile = new String("");
+							strFinFile = strBasePath + "/" + UPLOAD_DIRECTORY + "/hasDone-" + fileName;
+							qdcMain.setStrFB("<strong>成功</strong></br>文件下载地址为：<a href=\"" + strFinFile + "\">"
+									+ strFinFile + "</a></br></br><strong>继续上传请点击：</strong></br><a href=\""
 									+ strReUpLoad + "\">" + strReUpLoad + "</a></br>");
 						}
 					}
 				}
 			} catch (Exception ex) {
-//				request.setAttribute("message", "错误信息: " + ex.getMessage());
+				// request.setAttribute("message", "错误信息: " + ex.getMessage());
 				qdcMain.setStrFB("<strong>错误了！</strong></br>错误信息为:" + ex.getMessage() + "</br>"
 						+ "</br></br><strong>重新上传请点击：</strong></br><a href=\"" + strReUpLoad + "\">" + strReUpLoad
 						+ "</a></br>");
